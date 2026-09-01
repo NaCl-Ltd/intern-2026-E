@@ -1,6 +1,6 @@
 class MicropostsController < ApplicationController
-  before_action :logged_in_user, only: [:create, :destroy]
-  before_action :correct_user,   only: :destroy
+  before_action :logged_in_user, only: [:create, :update, :destroy]
+  before_action :correct_user,   only: [:update, :destroy]
 
   def create
     @micropost = current_user.microposts.build(micropost_params)
@@ -24,10 +24,23 @@ class MicropostsController < ApplicationController
     end
   end
 
+  #pin機能実装のために追加
+  def update
+    @micropost = current_user.microposts.find_by(id: params[:id])
+
+    if @micropost.update(micropost_params)
+      redirect_to request.referrer || root_url
+    else
+      redirect_to root_url
+    end
+end
+
   private
 
     def micropost_params
-      params.require(:micropost).permit(:content, :image)
+    Rails.logger.debug "[DEBUG] --------------------------"
+    Rails.logger.debug "[DEBUG] params: #{params}"
+      params.require(:micropost).permit(:content, :image, :pinned) #パラムにピンを追加
     end
 
     def correct_user

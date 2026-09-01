@@ -1,4 +1,4 @@
-#投稿を表示させるファイル
+<!-- 投稿を表示させるファイル -->
 
 <li id="micropost-<%= micropost.id %>">
   <%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
@@ -16,9 +16,12 @@
     <% if current_user?(micropost.user) %> 
       <%= link_to "delete", micropost, data: { "turbo-method": :delete,
                                                turbo_confirm: "You sure?" } %>
-      <%= link_to "pin", micropost, data: { "turbo-method": :pin,
-                                               turbo_confirm: "Pin this massage? 
-                                               \n*The pinned massage will be unpinned" } %>
+      <%= link_to micropost.pinned ? "pinned" : "pin", #pinの状態で表示メッセージを変える
+            micropost_path(micropost, micropost: { pinned: !micropost.pinned }),
+            data: {
+              "turbo-method": :patch, #信号を送ってpinnedのフラグをトグルさせる
+              turbo_confirm: "Pin this message?\n*The pinned message will be unpinned" #本当に固定するかメッセージを表示
+            } %>
     <% end %>
   </span>
 </li>
