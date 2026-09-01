@@ -36,7 +36,7 @@ class UsersController < ApplicationController
       flash[:success] = "Profile updated"
       redirect_to @user
     else
-      render 'edit', status: :unprocessable_content
+      render 'edit', status: :unprocessable_entitiy
     end
   end
 
@@ -63,8 +63,11 @@ class UsersController < ApplicationController
   private
 
     def user_params
+      Rails.logger.debug "[DEBUG] --------------------------"
+      Rails.logger.debug "[DEBUG] params: #{params}"
       params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation)
+                                   :password_confirmation,
+                                   :introduction)
     end
 
     # beforeフィルタ
