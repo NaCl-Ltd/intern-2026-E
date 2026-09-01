@@ -25,14 +25,21 @@ class MicropostsController < ApplicationController
   end
 
   #pin機能実装のために追加
-  def update
-    @micropost = current_user.microposts.find_by(id: params[:id])
+def update
+  @micropost = current_user.microposts.find_by(id: params[:id])
 
-    if @micropost.update(micropost_params)
-      redirect_to request.referrer || root_url
-    else
-      redirect_to root_url
+  if @micropost.update(micropost_params)
+    #ほかの固定メッセージがあったらそのメッセージのピンを外す
+    if @micropost.pinned 
+      current_user.microposts
+                  .where.not(id: @micropost.id)#今ピン止めした投稿以外を選択
+                  .update_all(pinned: false)#選択された投稿のpinを全てfalseにする
     end
+
+    redirect_to request.referrer || root_url
+  else
+    redirect_to root_url
+  end
 end
 
   private
