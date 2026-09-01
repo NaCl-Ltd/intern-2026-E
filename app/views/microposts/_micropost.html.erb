@@ -16,11 +16,11 @@
     <% if current_user?(micropost.user) %> 
       <%= link_to "delete", micropost, data: { "turbo-method": :delete,
                                                turbo_confirm: "You sure?" } %>
-      <%= link_to micropost.pinned ? "pinned" : "pin", #pinの状態で表示メッセージを変える
+      <%= link_to micropost.pinned ? "unpin" : "pin", #pinの状態で表示メッセージを変える
             micropost_path(micropost, micropost: { pinned: !micropost.pinned }),
             data: {
               "turbo-method": :patch, #信号を送ってpinnedのフラグをトグルさせる
-              turbo_confirm: "Pin this message?\n*The pinned message will be unpinned" #本当に固定するかメッセージを表示
+              turbo_confirm: micropost.pinned ? "Unpin this message?" : "Pin this message?\n*The pinned message will be unpinned" #本当に固定するかメッセージを表示
             } %>
     <% end %>
   </span>
