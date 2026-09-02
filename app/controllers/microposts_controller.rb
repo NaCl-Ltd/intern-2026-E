@@ -1,6 +1,6 @@
 class MicropostsController < ApplicationController
-  before_action :logged_in_user, only: [:create, :update, :destroy]
-  before_action :correct_user,   only: [:update, :destroy]
+  before_action :logged_in_user, only: [:create, :pin, :destroy]
+  before_action :correct_user,   only: [:pin, :destroy]
 
   def create
     @micropost = current_user.microposts.build(micropost_params)
@@ -25,21 +25,27 @@ class MicropostsController < ApplicationController
   end
 
   #pin機能実装のために追加
-def update
-  @micropost = current_user.microposts.find_by(id: params[:id])
+  def pin
+    @micropost = current_user.microposts.find_by(id: params[:id])
 
-  if @micropost.update(micropost_params)
-    #ほかの固定メッセージがあったらそのメッセージのピンを外す
-    if @micropost.pinned 
+    if @micropost.present?
+
+    if @micropost.pinned
+      # すでにピンされている場合 → ピンを外す
+      @micropost.update(pinned: false)
+
+    else
+      # ピンされていない場合 → 他のピンを外してからピンする
       current_user.microposts
-                  .where.not(id: @micropost.id)#今ピン止めした投稿以外を選択
-                  .update_all(pinned: false)#選択された投稿のpinを全てfalseにする
+                  .where.not(id: @micropost.id)
+                  .update_all(pinned: false)
+
+      @micropost.update(pinned: true)
     end
 
-    redirect_to request.referrer || root_url
-  else
-    redirect_to root_url
   end
+
+  redirect_to request.referrer || root_url, status: :see_other
 end
 
   private

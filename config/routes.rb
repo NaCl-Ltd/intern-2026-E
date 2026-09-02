@@ -20,4 +20,7 @@ Rails.application.routes.draw do
   resources :microposts,          only: [:create, :update, :destroy] #pin機能実装のためにアップデートを追加
   resources :relationships,       only: [:create, :destroy]
   get '/microposts', to: 'static_pages#home'
+  
+  patch '/microposts/:id/pin', to: 'microposts#pin', as: :pin_micropost
+
 end
