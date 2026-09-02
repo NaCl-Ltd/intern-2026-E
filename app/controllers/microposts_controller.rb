@@ -30,23 +30,22 @@ class MicropostsController < ApplicationController
 
     if @micropost.present?
 
-    if @micropost.pinned
-      # すでにピンされている場合 → ピンを外す
-      @micropost.update(pinned: false)
+      if @micropost.pinned
+        # すでにピンされている場合 → ピンを外す
+        @micropost.update(pinned: false)
+      else
+        # ピンされていない場合 → 他のピンを外してからピンする
+        current_user.microposts
+                    .where.not(id: @micropost.id)
+                    .update_all(pinned: false)
 
-    else
-      # ピンされていない場合 → 他のピンを外してからピンする
-      current_user.microposts
-                  .where.not(id: @micropost.id)
-                  .update_all(pinned: false)
+        @micropost.update(pinned: true)
+      end
 
-      @micropost.update(pinned: true)
     end
 
+    redirect_to request.referrer || root_url, status: :see_other
   end
-
-  redirect_to request.referrer || root_url, status: :see_other
-end
 
   private
 

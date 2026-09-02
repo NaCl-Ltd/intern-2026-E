@@ -11,11 +11,10 @@ class StaticPagesController < ApplicationController
                              #1 → 他のユーザー
                              #2 → 自分のpinned=false の順番となるように並び替え
                              Arel.sql( 
-                               "CASE
+                                 "CASE
                                   WHEN user_id = #{current_user.id} AND pinned = TRUE THEN 0
-                                  WHEN user_id != #{current_user.id} THEN 1
-                                  ELSE 2
-                                END"
+                                  ELSE 1
+                                  END"
                              ), #昇順
                              created_at: :desc
                            )
