@@ -13,12 +13,13 @@
       <%= f.email_field :email, class: 'form-control' %>
 
       <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
+      <%= render 'shared/password_field', f: f, field_name: :password %>
 
       <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
+      <%= render 'shared/password_field', f: f, field_name: :password_confirmation %>
 
       <%= f.submit "Create my account", class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>
+
