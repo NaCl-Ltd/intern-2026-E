@@ -31,7 +31,3 @@ function bindPasswordToggles() {
 document.addEventListener("turbo:load", function() {
   bindPasswordToggles();
 });
-
-document.addEventListener("DOMContentLoaded", function() {
-  bindPasswordToggles();
-});
