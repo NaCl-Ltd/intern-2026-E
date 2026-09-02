@@ -17,7 +17,10 @@ Rails.application.routes.draw do
   end
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
-  resources :microposts,          only: [:create, :destroy]
+  resources :microposts,          only: [:create, :update, :destroy] #pin機能実装のためにアップデートを追加
   resources :relationships,       only: [:create, :destroy]
   get '/microposts', to: 'static_pages#home'
+  
+  patch '/microposts/:id/pin', to: 'microposts#pin', as: :pin_micropost
+
 end

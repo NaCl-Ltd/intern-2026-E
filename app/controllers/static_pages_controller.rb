@@ -2,8 +2,24 @@ class StaticPagesController < ApplicationController
 
   def home
     if logged_in?
-      @micropost  = current_user.microposts.build
-      @feed_items = current_user.feed.paginate(page: params[:page])
+
+      @micropost = current_user.microposts.build
+
+      @feed_items = current_user.feed
+                           .reorder( #micropostにorderがあるためreorderで並び替えする必要がある
+                             #0 → 自分のpinned=true
+                             #1 → 他のユーザー
+                             #2 → 自分のpinned=false の順番となるように並び替え
+                             Arel.sql( 
+                                 "CASE
+                                  WHEN user_id = #{current_user.id} AND pinned = TRUE THEN 0
+                                  ELSE 1
+                                  END"
+                             ), #昇順
+                             created_at: :desc
+                           )
+                           .paginate(page: params[:page])
+
     end
   end
 
