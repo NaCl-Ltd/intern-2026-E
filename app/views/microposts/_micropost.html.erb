@@ -33,6 +33,7 @@
       |
       <%= link_to "delete", micropost, data: { "turbo-method": :delete,
                                                turbo_confirm: "You sure?" } %>
+      |
       <%= link_to micropost.pinned ? "unpin" : "pin",
       pin_micropost_path(micropost),
       data: {
