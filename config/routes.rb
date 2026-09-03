@@ -18,6 +18,9 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :microposts,          only: [:create, :update, :destroy, :edit] #pin機能実装のためにアップデートを追加
+  resources :microposts, only: [] do # micropostsのルートはここで作成しないためonly: []にしている。
+    resource :like, only: [:create, :destroy]
+  end
   resources :relationships,       only: [:create, :destroy]
   get '/microposts', to: 'static_pages#home'
   

@@ -12,6 +12,21 @@
   <span class="timestamp">
     Posted <%= time_ago_in_words(micropost.created_at) %> ago.
 
+    <!-- いいね数 -->
+  <%= turbo_frame_tag "likes_#{micropost.id}" do %> <!-- turbo_frame_tagを使うことで、いいねボタンを押したときにページ全体をリロードせずに、いいね数だけを更新することができる。-->
+    <span class="likes">
+      <%= pluralize(micropost.likes.count, "like") %>
+
+      <% if logged_in? %>
+        <% if current_user.likes.exists?(micropost: micropost) %>
+          <%= button_to "♡", micropost_like_path(micropost), method: :delete, class: "btn btn-danger" %>
+        <% else %>
+          <%= button_to "♡", micropost_like_path(micropost), method: :post, class: "btn btn-outline-danger" %>
+        <% end %>
+      <% end %>
+    </span>
+  <% end %>
+
   <!-- 表示させている投稿がログインユーザーと一致している時の処理（もし自分の投稿だったら） -->
     <% if current_user?(micropost.user) %> 
       <%= link_to "edit", edit_micropost_path(micropost) %>
