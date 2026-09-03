@@ -7,8 +7,8 @@
       <section class="stats">
         <%= render 'shared/stats' %>
       </section>
-      <section class="micropost_form">
-        <h3>New Post</h3>
+      <section class="micropost_form post-form-card">
+        <h3>🍴 New Post</h3>
         <%= render 'shared/micropost_form' %>
       </section>
     </aside>
@@ -29,6 +29,10 @@
         <%= render 'shared/feed' %>
       <% end %>
 
+      <div class="posts-heading">
+        <h3>🍴 Micropost Feed</h3>
+      </div>
+      <%= render 'shared/feed' %>
     </div>
   </div>
 

@@ -1,12 +1,21 @@
 /* variables */
 
 :root {
-    --gray-darker: #222222;
-    --gray: #555555;
-    --gray-light: #777777;
-    --gray-medium-light: #eaeaea;
-    --gray-lighter: #eeeeee;
+  /* YUMYUM colors */
+  --orange: #ff9f1c;
+  --orange-dark: #f47c20;
+  --yellow: #effc7c;
+  --cream: #fff8e7;
+  --brown: #5c4033;
+
+  /* gray */
+  --gray-darker: #3f3028;
+  --gray: #6b5b53;
+  --gray-light: #8c7b72;
+  --gray-medium-light: #eadfd5;
+  --gray-lighter: #f4ece4;
 }
+
 .my-orange-navbar {
   background-color: var(--orange);
   border-color: var(--orange);
@@ -33,7 +42,9 @@
 /* universal */
 
 body {
-  padding-top: 80px;
+  padding-top: 110px;
+  background-color: var(--cream);
+  color: var(--brown);
 }
 
 section {
@@ -50,6 +61,28 @@ textarea {
     margin-bottom: 10px;
   }
 }
+
+/* link color */
+a {
+  color: var(--orange-dark);
+}
+
+a:hover {
+  color: var(--orange);
+  text-decoration: none;
+}
+
+/* footer links 
+
+footer a {
+  color: white;
+}
+
+footer a:hover {
+  color: white;
+  text-decoration: underline;
+}
+*/
 
 /* typography */
 
@@ -295,27 +328,43 @@ input {
 .microposts {
   list-style: none;
   padding: 0;
+
   li {
-    padding: 10px 0;
-    border-top: 1px solid #e8e8e8;
+    background-color: white;
+    padding: 18px;
+    margin-bottom: 15px;
+    border: 1px solid var(--gray-medium-light);
+    border-radius: 15px;
+    box-shadow: 0 3px 8px rgba(92, 64, 51, 0.08);
   }
+
   .user {
-    margin-top: 5em;
+    margin-top: 0;
     padding-top: 0;
+    font-weight: bold;
   }
+
   .content {
     display: block;
     margin-left: 60px;
+    margin-top: 8px;
+    color: var(--brown);
+
     img {
       display: block;
       padding: 5px 0;
+      max-width: 100%;
+      border-radius: 10px;
     }
   }
+
   .timestamp {
     color: var(--gray-light);
     display: block;
     margin-left: 60px;
+    margin-top: 8px;
   }
+
   .gravatar {
     float: left;
     margin-right: 10px;
@@ -378,4 +427,448 @@ span.image {
 
 .ranking-list > li {
   margin-bottom: 15px;
+
+/* YUMYUM header */
+
+header.navbar {
+  background-color: #ff8809;
+}
+
+header.navbar #navbar-menu > li > a {
+  color: white !important;
+}
+
+header.navbar #navbar-menu > li > a:hover {
+  color: white !important;
+  background-color: transparent !important;
+}
+
+/* Account dropdown */
+
+#navbar-menu > li.dropdown:hover > #dropdown-menu {
+  display: block;
+}
+
+/* ========================================
+   YUMYUM 投稿カード
+   ======================================== */
+
+.microposts {
+  list-style: none;
+  padding: 0;
+
+  li.micropost-card {
+    background-color: white;
+    padding: 18px;
+    margin-bottom: 18px;
+
+    border: 1px solid var(--gray-medium-light);
+    border-radius: 16px;
+
+    box-shadow: 0 4px 10px rgba(92, 64, 51, 0.08);
+
+    transition: transform 0.2s ease,
+                box-shadow 0.2s ease;
+  }
+
+  li.micropost-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(92, 64, 51, 0.12);
+  }
+}
+
+
+/* ユーザー情報 */
+
+.micropost-header {
+  display: flex;
+  align-items: center;
+}
+
+.micropost-user {
+  margin-left: 10px;
+}
+
+.micropost-user .user {
+  display: block;
+  font-weight: bold;
+  font-size: 1.05em;
+}
+
+.micropost-user .user a {
+  color: var(--orange-dark);
+}
+
+.micropost-user .user a:hover {
+  color: var(--orange);
+}
+
+.micropost-user .timestamp {
+  display: block;
+  margin-top: 4px;
+  color: var(--gray-light);
+  font-size: 0.85em;
+}
+
+
+/* 投稿内容 */
+
+.micropost-content {
+  margin: 16px 5px;
+  font-size: 1.05em;
+  line-height: 1.6;
+  color: var(--brown);
+}
+
+.micropost-content img {
+  display: block;
+  max-width: 100%;
+  margin-top: 10px;
+  border-radius: 12px;
+}
+
+
+/* いいね */
+
+.micropost-likes {
+  display: flex;
+  align-items: center;
+  margin: 10px 5px;
+}
+
+.micropost-likes .likes {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+
+/* 操作ボタン */
+
+.micropost-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  margin-top: 10px;
+  padding-top: 10px;
+
+  border-top: 1px solid var(--gray-lighter);
+}
+
+.micropost-actions a {
+  margin-left: 8px;
+}
+
+
+/* BMボタン */
+
+.bookmark-button {
+  display: inline-block;
+
+  padding: 7px 13px;
+
+  background-color: var(--yellow);
+  color: var(--brown) !important;
+
+  border-radius: 20px;
+
+  font-size: 0.9em;
+  font-weight: bold;
+
+  text-decoration: none;
+
+  transition: background-color 0.2s ease,
+              transform 0.2s ease;
+}
+
+.bookmark-button:hover {
+  background-color: var(--orange);
+  color: white !important;
+
+  transform: translateY(-1px);
+}
+
+.bookmark-button.bookmarked {
+  background-color: var(--orange);
+  color: white !important;
+}
+
+/* いいねボタン */
+
+.like-button {
+  border: none;
+  background-color: transparent;
+
+  color: var(--gray-light);
+
+  font-size: 1.4em;
+  line-height: 1;
+
+  padding: 4px 8px;
+
+  cursor: pointer;
+
+  transition: transform 0.2s ease,
+              color 0.2s ease;
+}
+
+.like-button:hover {
+  color: var(--orange);
+  transform: scale(1.15);
+}
+
+.like-button.liked {
+  color: var(--orange-dark);
+}
+
+/* 投稿操作ボタン */
+
+.post-action {
+  display: inline-block;
+
+  padding: 6px 10px;
+  margin-left: 6px;
+
+  border-radius: 12px;
+
+  font-size: 0.85em;
+  font-weight: bold;
+
+  text-decoration: none;
+
+  transition: background-color 0.2s ease,
+              color 0.2s ease,
+              transform 0.2s ease;
+}
+
+/* edit */
+
+.edit-action {
+  background-color: var(--yellow);
+  color: var(--brown) !important;
+}
+
+.edit-action:hover {
+  background-color: var(--orange);
+  color: white !important;
+  transform: translateY(-1px);
+}
+
+/* delete */
+
+.delete-action {
+  background-color: var(--gray-lighter);
+  color: var(--gray) !important;
+}
+
+.delete-action:hover {
+  background-color: var(--gray-light);
+  color: white !important;
+  transform: translateY(-1px);
+}
+
+/* pin */
+
+.pin-action {
+  background-color: var(--cream);
+  color: var(--orange-dark) !important;
+  border: 1px solid var(--yellow);
+}
+
+.pin-action:hover {
+  background-color: var(--yellow);
+  color: var(--brown) !important;
+  transform: translateY(-1px);
+}
+
+/* ========================================
+   プロフィールカード
+   ======================================== */
+
+.profile-card {
+  background-color: white;
+  padding: 25px 20px;
+  border: 1px solid var(--gray-medium-light);
+  border-radius: 18px;
+
+  text-align: center;
+
+  box-shadow: 0 4px 12px rgba(92, 64, 51, 0.08);
+}
+
+.profile-icon img {
+  border-radius: 50%;
+  border: 4px solid var(--yellow);
+}
+
+.profile-card h1 {
+  margin-top: 12px;
+  margin-bottom: 10px;
+
+  color: var(--brown);
+  font-size: 1.5em;
+}
+
+.user-introduction {
+  color: var(--gray);
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+
+/* ========================================
+   ブックマーク一覧
+   ======================================== */
+
+.profile-bookmarks {
+  margin-top: 20px;
+}
+
+.profile-bookmarks h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+
+  color: var(--brown);
+  font-size: 1.2em;
+}
+
+.profile-bookmarks .micropost-card {
+  box-shadow: none;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+.profile-bookmarks .micropost-card:hover {
+  transform: none;
+}
+
+/* ========================================
+   Microposts 見出し
+   ======================================== */
+
+.posts-heading {
+  margin-bottom: 18px;
+  padding-bottom: 10px;
+
+  border-bottom: 3px solid var(--yellow);
+}
+
+.posts-heading h3 {
+  margin: 0;
+
+  color: var(--brown);
+  font-size: 1.4em;
+  font-weight: bold;
+}
+
+.posts-heading h3 span {
+  color: var(--gray-light);
+  font-size: 0.75em;
+  font-weight: normal;
+}
+
+/* ========================================
+   New Post カード
+   ======================================== */
+
+.post-form-card {
+  background-color: white;
+  padding: 20px;
+
+  margin-top: 25px;
+
+  border: 1px solid var(--gray-medium-light);
+  border-radius: 18px;
+
+  box-shadow: 0 4px 12px rgba(92, 64, 51, 0.08);
+}
+
+.post-form-card h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+
+  color: var(--brown);
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+
+/* ========================================
+   フィード見出し
+   ======================================== */
+
+.posts-heading {
+  margin-bottom: 18px;
+  padding-bottom: 10px;
+
+  border-bottom: 3px solid var(--yellow);
+}
+
+.posts-heading h3 {
+  margin: 0;
+
+  color: var(--brown);
+  font-size: 1.4em;
+  font-weight: bold;
+}
+
+/* ========================================
+   ホーム画面 プロフィールカード
+   プロフィール画面と統一
+   ======================================== */
+
+.home-profile-card {
+  background-color: white;
+
+  padding: 20px 15px;
+
+  border: 1px solid var(--gray-lighter);
+  border-radius: 18px;
+
+  box-shadow: 0 4px 12px rgba(92, 64, 51, 0.08);
+}
+
+.home-profile-header {
+  display: flex;
+  align-items: center;
+}
+
+.home-profile-header img {
+  width: 80px;
+  height: 80px;
+
+  border-radius: 50%;
+  border: 4px solid var(--yellow);
+}
+
+.home-profile-info {
+  margin-left: 15px;
+}
+
+.home-profile-info h1 {
+  margin: 0 0 5px;
+
+  color: var(--brown);
+
+  font-size: 1.4em;
+  font-weight: normal;
+}
+
+.home-profile-info span {
+  display: block;
+
+  margin-top: 3px;
+
+  color: var(--gray-light);
+  font-size: 0.9em;
+}
+
+.home-profile-info span a {
+  color: var(--orange-dark);
+  font-weight: bold;
+}
+
+.home-profile-info span a:hover {
+  color: var(--orange);
 }
