@@ -7,6 +7,10 @@
     --gray-medium-light: #eaeaea;
     --gray-lighter: #eeeeee;
 }
+.my-orange-navbar {
+  background-color: var(--orange);
+  border-color: var(--orange);
+}
 
 /* override */
 
