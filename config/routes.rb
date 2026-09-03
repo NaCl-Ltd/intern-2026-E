@@ -25,5 +25,5 @@ Rails.application.routes.draw do
   get '/microposts', to: 'static_pages#home'
   
   patch '/microposts/:id/pin', to: 'microposts#pin', as: :pin_micropost
-
+  patch '/microposts/:id/bookmark', to: 'microposts#bookmark', as: :bookmark_micropost
 end

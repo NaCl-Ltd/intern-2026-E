@@ -11,6 +11,19 @@
     <section class="stats">
       <%= render 'shared/stats' %>
     </section>
+
+    <section class="bookmarked_posts">
+      <h3>Bookmarked Posts</h3>
+
+      <% if @bookmarked_microposts.any? %>
+        <ol class="microposts">
+          <%= render @bookmarked_microposts %>
+        </ol>
+      <% else %>
+        <p>No bookmarked posts.</p>
+      <% end %>
+    </section>
+    
   </aside>
   <div class="col-md-8">
     <%= render 'follow_form' if logged_in? %>
