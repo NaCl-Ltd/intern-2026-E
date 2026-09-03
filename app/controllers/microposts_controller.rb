@@ -1,5 +1,5 @@
 class MicropostsController < ApplicationController
-  before_action :logged_in_user, only: [:create, :pin, :destroy]
+  before_action :logged_in_user, only: [:create, :bookmark, :pin, :destroy]
   before_action :correct_user,   only: [:pin, :destroy]
 
   def create
@@ -46,6 +46,24 @@ class MicropostsController < ApplicationController
 
     redirect_to request.referrer || root_url, status: :see_other
   end
+
+  #ブックマーク機能のために追加
+  def bookmark
+    @micropost = Micropost.find_by(id: params[:id]) #マイクロポストのIDを検索
+
+    if @micropost.present? #そのIDの投稿が存在するとき
+      bookmark = current_user.bookmarks.find_by(micropost: @micropost) #ログインユーザーがその投稿をブックマークしているか？
+
+      if bookmark #ブックマークされているか
+        bookmark.destroy #されている⇒ブックマークのカラムを消す
+       else
+        current_user.bookmarks.create(micropost: @micropost) #されていない⇒BMテーブルにユーザーIDと投稿IDを格納する
+      end
+    end
+
+    redirect_to request.referrer || root_url, status: :see_other
+  end
+
 
   private
 

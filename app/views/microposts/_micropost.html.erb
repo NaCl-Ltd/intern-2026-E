@@ -23,5 +23,16 @@
         turbo_confirm: micropost.pinned ? "Unpin this message?" : "Pin this message?\n*The pinned message will be unpinned"
       } %>
     <% end %>
+
+    <% if !current_user?(micropost.user) %>
+      <% bookmarked = current_user.bookmarks.exists?(micropost: micropost) %>
+
+      <%= link_to bookmarked ? "unBM" : "BM",
+        bookmark_micropost_path(micropost),
+        data: {
+          "turbo-method": :patch,
+          turbo_confirm: bookmarked ? "UnBookMark this message?" : "BookMark this message?"
+          } %>
+    <% end %>
   </span>
 </li>

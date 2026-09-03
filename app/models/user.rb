@@ -1,5 +1,11 @@
 class User < ApplicationRecord
   has_many :microposts, dependent: :destroy
+  #追加##
+  has_many :bookmarks, dependent: :destroy
+  has_many :bookmarked_microposts,
+           through: :bookmarks,
+           source: :micropost
+  #######
   has_many :active_relationships,  class_name:  "Relationship",
                                    foreign_key: "follower_id",
                                    dependent:   :destroy
