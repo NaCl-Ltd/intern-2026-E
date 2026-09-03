@@ -42,7 +42,7 @@
 /* universal */
 
 body {
-  padding-top: 80px;
+  padding-top: 110px;
   background-color: var(--cream);
   color: var(--brown);
 }
@@ -741,4 +741,134 @@ header.navbar #navbar-menu > li > a:hover {
 
 .profile-bookmarks .micropost-card:hover {
   transform: none;
+}
+
+/* ========================================
+   Microposts 見出し
+   ======================================== */
+
+.posts-heading {
+  margin-bottom: 18px;
+  padding-bottom: 10px;
+
+  border-bottom: 3px solid var(--yellow);
+}
+
+.posts-heading h3 {
+  margin: 0;
+
+  color: var(--brown);
+  font-size: 1.4em;
+  font-weight: bold;
+}
+
+.posts-heading h3 span {
+  color: var(--gray-light);
+  font-size: 0.75em;
+  font-weight: normal;
+}
+
+/* ========================================
+   New Post カード
+   ======================================== */
+
+.post-form-card {
+  background-color: white;
+  padding: 20px;
+
+  margin-top: 25px;
+
+  border: 1px solid var(--gray-medium-light);
+  border-radius: 18px;
+
+  box-shadow: 0 4px 12px rgba(92, 64, 51, 0.08);
+}
+
+.post-form-card h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+
+  color: var(--brown);
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+
+/* ========================================
+   フィード見出し
+   ======================================== */
+
+.posts-heading {
+  margin-bottom: 18px;
+  padding-bottom: 10px;
+
+  border-bottom: 3px solid var(--yellow);
+}
+
+.posts-heading h3 {
+  margin: 0;
+
+  color: var(--brown);
+  font-size: 1.4em;
+  font-weight: bold;
+}
+
+/* ========================================
+   ホーム画面 プロフィールカード
+   プロフィール画面と統一
+   ======================================== */
+
+.home-profile-card {
+  background-color: white;
+
+  padding: 20px 15px;
+
+  border: 1px solid var(--gray-lighter);
+  border-radius: 18px;
+
+  box-shadow: 0 4px 12px rgba(92, 64, 51, 0.08);
+}
+
+.home-profile-header {
+  display: flex;
+  align-items: center;
+}
+
+.home-profile-header img {
+  width: 80px;
+  height: 80px;
+
+  border-radius: 50%;
+  border: 4px solid var(--yellow);
+}
+
+.home-profile-info {
+  margin-left: 15px;
+}
+
+.home-profile-info h1 {
+  margin: 0 0 5px;
+
+  color: var(--brown);
+
+  font-size: 1.4em;
+  font-weight: normal;
+}
+
+.home-profile-info span {
+  display: block;
+
+  margin-top: 3px;
+
+  color: var(--gray-light);
+  font-size: 0.9em;
+}
+
+.home-profile-info span a {
+  color: var(--orange-dark);
+  font-weight: bold;
+}
+
+.home-profile-info span a:hover {
+  color: var(--orange);
 }
