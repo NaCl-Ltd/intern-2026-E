@@ -448,3 +448,236 @@ header.navbar #navbar-menu > li > a:hover {
 #navbar-menu > li.dropdown:hover > #dropdown-menu {
   display: block;
 }
+
+/* ========================================
+   YUMYUM 投稿カード
+   ======================================== */
+
+.microposts {
+  list-style: none;
+  padding: 0;
+
+  li.micropost-card {
+    background-color: white;
+    padding: 18px;
+    margin-bottom: 18px;
+
+    border: 1px solid var(--gray-medium-light);
+    border-radius: 16px;
+
+    box-shadow: 0 4px 10px rgba(92, 64, 51, 0.08);
+
+    transition: transform 0.2s ease,
+                box-shadow 0.2s ease;
+  }
+
+  li.micropost-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(92, 64, 51, 0.12);
+  }
+}
+
+
+/* ユーザー情報 */
+
+.micropost-header {
+  display: flex;
+  align-items: center;
+}
+
+.micropost-user {
+  margin-left: 10px;
+}
+
+.micropost-user .user {
+  display: block;
+  font-weight: bold;
+  font-size: 1.05em;
+}
+
+.micropost-user .user a {
+  color: var(--orange-dark);
+}
+
+.micropost-user .user a:hover {
+  color: var(--orange);
+}
+
+.micropost-user .timestamp {
+  display: block;
+  margin-top: 4px;
+  color: var(--gray-light);
+  font-size: 0.85em;
+}
+
+
+/* 投稿内容 */
+
+.micropost-content {
+  margin: 16px 5px;
+  font-size: 1.05em;
+  line-height: 1.6;
+  color: var(--brown);
+}
+
+.micropost-content img {
+  display: block;
+  max-width: 100%;
+  margin-top: 10px;
+  border-radius: 12px;
+}
+
+
+/* いいね */
+
+.micropost-likes {
+  display: flex;
+  align-items: center;
+  margin: 10px 5px;
+}
+
+.micropost-likes .likes {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+
+/* 操作ボタン */
+
+.micropost-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  margin-top: 10px;
+  padding-top: 10px;
+
+  border-top: 1px solid var(--gray-lighter);
+}
+
+.micropost-actions a {
+  margin-left: 8px;
+}
+
+
+/* BMボタン */
+
+.bookmark-button {
+  display: inline-block;
+
+  padding: 7px 13px;
+
+  background-color: var(--yellow);
+  color: var(--brown) !important;
+
+  border-radius: 20px;
+
+  font-size: 0.9em;
+  font-weight: bold;
+
+  text-decoration: none;
+
+  transition: background-color 0.2s ease,
+              transform 0.2s ease;
+}
+
+.bookmark-button:hover {
+  background-color: var(--orange);
+  color: white !important;
+
+  transform: translateY(-1px);
+}
+
+.bookmark-button.bookmarked {
+  background-color: var(--orange);
+  color: white !important;
+}
+
+/* いいねボタン */
+
+.like-button {
+  border: none;
+  background-color: transparent;
+
+  color: var(--gray-light);
+
+  font-size: 1.4em;
+  line-height: 1;
+
+  padding: 4px 8px;
+
+  cursor: pointer;
+
+  transition: transform 0.2s ease,
+              color 0.2s ease;
+}
+
+.like-button:hover {
+  color: var(--orange);
+  transform: scale(1.15);
+}
+
+.like-button.liked {
+  color: var(--orange-dark);
+}
+
+/* 投稿操作ボタン */
+
+.post-action {
+  display: inline-block;
+
+  padding: 6px 10px;
+  margin-left: 6px;
+
+  border-radius: 12px;
+
+  font-size: 0.85em;
+  font-weight: bold;
+
+  text-decoration: none;
+
+  transition: background-color 0.2s ease,
+              color 0.2s ease,
+              transform 0.2s ease;
+}
+
+/* edit */
+
+.edit-action {
+  background-color: var(--yellow);
+  color: var(--brown) !important;
+}
+
+.edit-action:hover {
+  background-color: var(--orange);
+  color: white !important;
+  transform: translateY(-1px);
+}
+
+/* delete */
+
+.delete-action {
+  background-color: var(--gray-lighter);
+  color: var(--gray) !important;
+}
+
+.delete-action:hover {
+  background-color: var(--gray-light);
+  color: white !important;
+  transform: translateY(-1px);
+}
+
+/* pin */
+
+.pin-action {
+  background-color: var(--cream);
+  color: var(--orange-dark) !important;
+  border: 1px solid var(--yellow);
+}
+
+.pin-action:hover {
+  background-color: var(--yellow);
+  color: var(--brown) !important;
+  transform: translateY(-1px);
+}
