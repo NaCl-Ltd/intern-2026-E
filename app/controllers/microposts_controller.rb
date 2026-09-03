@@ -1,6 +1,7 @@
 class MicropostsController < ApplicationController
-  before_action :logged_in_user, only: [:create, :bookmark, :pin, :destroy]
-  before_action :correct_user,   only: [:pin, :destroy]
+
+  before_action :logged_in_user, only: [:create, :bookmark, :pin, :destroy, :edit, :update]
+  before_action :correct_user,   only: [:pin, :destroy, :edit, :update]
 
   def create
     @micropost = current_user.microposts.build(micropost_params)
@@ -11,6 +12,31 @@ class MicropostsController < ApplicationController
     else
       @feed_items = current_user.feed.paginate(page: params[:page])
       render 'static_pages/home', status: :unprocessable_content
+    end
+  end
+
+  def edit #編集機能のため追加
+    @micropost = current_user.microposts.find_by(id: params[:id])
+
+    if @micropost.nil?
+      flash[:error] = "Micropost not found."
+      redirect_to root_url, status: :see_other
+    end
+    
+  end
+
+  def update #編集機能のため追加
+   remove_image =
+   ActiveModel::Type::Boolean.new.cast(
+    micropost_params[:remove_image]
+    )
+    @micropost.image.purge if remove_image
+
+    if @micropost.update(micropost_params)
+      flash[:success] = "Micropost updated!"
+      redirect_to root_url
+    else
+      render 'edit', status: :unprocessable_content
     end
   end
 
@@ -70,7 +96,7 @@ class MicropostsController < ApplicationController
     def micropost_params
     Rails.logger.debug "[DEBUG] --------------------------"
     Rails.logger.debug "[DEBUG] params: #{params}"
-      params.require(:micropost).permit(:content, :image, :pinned) #パラムにピンを追加
+      params.require(:micropost).permit(:content, :image, :pinned, :remove_image) #パラムにピンを追加
     end
 
     def correct_user
