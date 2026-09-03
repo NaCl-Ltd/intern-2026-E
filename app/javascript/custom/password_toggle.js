@@ -27,7 +27,10 @@ function bindPasswordToggles() {
   });
 }
 
-/*turboと通常のロードの両方に対応*/ 
 document.addEventListener("turbo:load", function() {
+  bindPasswordToggles();
+});
+/*ログインエラーが発生した場合の処理*/
+document.addEventListener("turbo:render", function() {
   bindPasswordToggles();
 });
