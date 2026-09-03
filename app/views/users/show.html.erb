@@ -1,18 +1,23 @@
 <% provide(:title, @user.name) %>
 <div class="row">
   <aside class="col-md-4">
-    <section class="user_info">
-      <h1>
+    <section class="user_info profile-card">
+      <div class="profile-icon">
         <%= gravatar_for @user %>
+      </div>
+      <h1>
         <%= @user.name %>
       </h1>
-      <p class="user-introduction"><%= @user.introduction %></p>
+      <p class="user-introduction">
+        <%= @user.introduction %>
+      </p>
     </section>
+    
     <section class="stats">
       <%= render 'shared/stats' %>
     </section>
 
-    <section class="bookmarked_posts">
+    <section class="bookmarked_posts profile-bookmarks">
       <h3>Bookmarked Posts</h3>
 
       <% if @bookmarked_microposts.any? %>
