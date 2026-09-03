@@ -9,9 +9,13 @@
     <div>
       <p>現在の画像</p>
       <%= image_tag @micropost.image.variant(:display) %>
-
-      <%= check_box_tag :remove_image, "1" %>
-      <%= label_tag :remove_image, "Delete image" %>
+      
+      <div class="remove-image">
+       <label class="remove-image-label">
+         <%= f.check_box :remove_image %>
+          <span>Delete image</span> 
+        </label>
+      </div>
     </div>
   <% end %>
 

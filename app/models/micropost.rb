@@ -1,4 +1,5 @@
 class Micropost < ApplicationRecord
+  attr_accessor :remove_image 
   belongs_to :user
   has_one_attached :image do |attachable|
     attachable.variant :display, resize_to_limit: [500, 500]

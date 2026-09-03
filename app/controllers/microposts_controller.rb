@@ -15,12 +15,22 @@ class MicropostsController < ApplicationController
   end
 
   def edit #編集機能のため追加
+    @micropost = current_user.microposts.find_by(id: params[:id])
+
+    if @micropost.nil?
+      flash[:error] = "Micropost not found."
+      redirect_to root_url, status: :see_other
+    end
     
   end
 
   def update #編集機能のため追加
-    @micropost.image.purge if params[:remove_image] == "1" #チェックボックスがオンの場合、画像を削除する
-    
+   remove_image =
+   ActiveModel::Type::Boolean.new.cast(
+    micropost_params[:remove_image]
+    )
+    @micropost.image.purge if remove_image
+
     if @micropost.update(micropost_params)
       flash[:success] = "Micropost updated!"
       redirect_to root_url
@@ -67,7 +77,7 @@ class MicropostsController < ApplicationController
     def micropost_params
     Rails.logger.debug "[DEBUG] --------------------------"
     Rails.logger.debug "[DEBUG] params: #{params}"
-      params.require(:micropost).permit(:content, :image, :pinned) #パラムにピンを追加
+      params.require(:micropost).permit(:content, :image, :pinned, :remove_image) #パラムにピンを追加
     end
 
     def correct_user
