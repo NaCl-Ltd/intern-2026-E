@@ -1,13 +1,13 @@
 class Micropost < ApplicationRecord
   attr_accessor :remove_image 
   belongs_to :user
-
   has_many :bookmarks, dependent: :destroy
   has_many :bookmarking_users,
            through: :bookmarks,
            source: :user
   has_many :likes, dependent: :destroy
-
+  belongs_to :shop, optional: true
+  accepts_nested_attributes_for :shop
   has_one_attached :image do |attachable|
     attachable.variant :display, resize_to_limit: [500, 500]
   end
@@ -19,6 +19,7 @@ class Micropost < ApplicationRecord
     .order('COUNT(likes.id) DESC')
   }
   validates :user_id, presence: true
+  validates :shop_id, presence: true
   validates :content, presence: true, length: { maximum: 140 }
   validates :image,   content_type: { in: %w[image/jpeg image/gif image/png],
                                       message: "must be a valid image format" },

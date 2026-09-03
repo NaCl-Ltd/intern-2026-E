@@ -5,6 +5,12 @@
     <%= f.text_area :content, placeholder: "Compose new micropost..." %>
   </div>
 
+  <div class="field">
+    <%= f.label :shop_id, "Shop" %>
+    <%= f.collection_select :shop_id, Shop.all, :id, :name,
+        { prompt: "Select a shop" } %>
+  </div>
+
   <% if @micropost.persisted? && @micropost.image.attached? %>
     <div>
       <p>現在の画像</p>

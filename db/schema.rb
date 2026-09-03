@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_03_020704) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_03_070000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -66,8 +66,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_03_020704) do
     t.text "content"
     t.datetime "created_at", null: false
     t.boolean "pinned"
+    t.bigint "shop_id"
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
+    t.index ["shop_id"], name: "index_microposts_on_shop_id"
     t.index ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_microposts_on_user_id"
   end
@@ -85,6 +87,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_03_020704) do
   create_table "shops", force: :cascade do |t|
     t.string "address"
     t.datetime "created_at", null: false
+    t.text "description"
+    t.string "genre"
     t.string "name"
     t.string "phone_number"
     t.datetime "updated_at", null: false
@@ -113,5 +117,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_03_020704) do
   add_foreign_key "bookmarks", "users"
   add_foreign_key "likes", "microposts"
   add_foreign_key "likes", "users"
+  add_foreign_key "microposts", "shops"
   add_foreign_key "microposts", "users"
 end

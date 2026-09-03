@@ -96,7 +96,7 @@ class MicropostsController < ApplicationController
     def micropost_params
     Rails.logger.debug "[DEBUG] --------------------------"
     Rails.logger.debug "[DEBUG] params: #{params}"
-      params.require(:micropost).permit(:content, :image, :pinned, :remove_image) #パラムにピンを追加
+      params.require(:micropost).permit(:content, :image, :pinned, :remove_image, :shop_id) #パラムにピンを追加
     end
 
     def correct_user

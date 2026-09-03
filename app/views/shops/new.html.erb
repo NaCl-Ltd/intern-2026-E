@@ -1,0 +1,24 @@
+<% provide(:title, 'shop_add') %>
+<h1>shop_add</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_with(model: @shop) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+      <%= f.label :address %>
+      <%= f.text_field :address, class: 'form-control' %>
+      <%= f.label :phone_number %>
+      <%= f.text_field :phone_number, class: 'form-control' %>
+      <%= f.label :description %>
+      <%= f.text_area :description, class: 'form-control' %>
+      <%= f.label :genre %>
+      <%= f.text_field :genre, class: 'form-control' %>
+
+      <%= f.submit "Create shop", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
