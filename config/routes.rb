@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'shops/index'
-  resources :shops, only: [:index, :new, :create, :destroy, :edit, :show, :update]
+  resources :shops
   get 'password_resets/new'
   get 'password_resets/edit'
   root   "static_pages#home"
