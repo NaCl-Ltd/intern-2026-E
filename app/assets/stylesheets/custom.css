@@ -332,3 +332,12 @@ span.image {
     border: 0;
   }
 }
+
+.remove-image {
+  margin-top: 10px;
+}
+.remove-image-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
