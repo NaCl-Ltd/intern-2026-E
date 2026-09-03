@@ -19,6 +19,8 @@ class StaticPagesController < ApplicationController
                              created_at: :desc
                            )
                            .paginate(page: params[:page])
+                           
+      @ranking_microposts = Micropost.ranking
 
     end
   end

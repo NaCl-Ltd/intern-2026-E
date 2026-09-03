@@ -345,3 +345,37 @@ span.image {
   align-items: center;
   gap: 5px;
 }
+
+.feed-tabs {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.feed-tabs .tab {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  text-decoration: none;
+  color: #333;
+}
+.feed-tabs {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.feed-tabs > li {
+  width: 50%;
+  text-align: center;
+}
+
+.feed-tabs > li > a {
+  font-size: 20px;
+  padding: 15px 10px;
+}
+
+.ranking-list {
+  padding-left: 40px;
+}
+
+.ranking-list > li {
+  margin-bottom: 15px;
+}
