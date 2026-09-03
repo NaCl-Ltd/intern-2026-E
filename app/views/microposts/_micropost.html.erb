@@ -14,6 +14,8 @@
 
   <!-- 表示させている投稿がログインユーザーと一致している時の処理（もし自分の投稿だったら） -->
     <% if current_user?(micropost.user) %> 
+      <%= link_to "edit", edit_micropost_path(micropost) %>
+      |
       <%= link_to "delete", micropost, data: { "turbo-method": :delete,
                                                turbo_confirm: "You sure?" } %>
       <%= link_to micropost.pinned ? "unpin" : "pin",

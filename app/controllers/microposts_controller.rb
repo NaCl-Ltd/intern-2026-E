@@ -1,6 +1,6 @@
 class MicropostsController < ApplicationController
-  before_action :logged_in_user, only: [:create, :pin, :destroy]
-  before_action :correct_user,   only: [:pin, :destroy]
+  before_action :logged_in_user, only: [:create, :pin, :destroy, :edit, :update]
+  before_action :correct_user,   only: [:pin, :destroy, :edit, :update]
 
   def create
     @micropost = current_user.microposts.build(micropost_params)
@@ -11,6 +11,21 @@ class MicropostsController < ApplicationController
     else
       @feed_items = current_user.feed.paginate(page: params[:page])
       render 'static_pages/home', status: :unprocessable_content
+    end
+  end
+
+  def edit #編集機能のため追加
+    
+  end
+
+  def update #編集機能のため追加
+    @micropost.image.purge if params[:remove_image] == "1" #チェックボックスがオンの場合、画像を削除する
+    
+    if @micropost.update(micropost_params)
+      flash[:success] = "Micropost updated!"
+      redirect_to root_url
+    else
+      render 'edit', status: :unprocessable_content
     end
   end
 
