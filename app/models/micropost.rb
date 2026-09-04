@@ -6,8 +6,8 @@ class Micropost < ApplicationRecord
            through: :bookmarks,
            source: :user
   has_many :likes, dependent: :destroy
-  accepts_nested_attributes_for :shop
   belongs_to :shop
+  accepts_nested_attributes_for :shop
   has_one_attached :image do |attachable|
     attachable.variant :display, resize_to_limit: [500, 500]
   end
