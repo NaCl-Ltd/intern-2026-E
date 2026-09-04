@@ -1,0 +1,24 @@
+<h1><%= @shop.name %></h1>
+
+<p>
+  <strong>address：</strong>
+  <%= @shop.address %>
+</p>
+
+<p>
+  <strong>phone_number：</strong>
+  <%= @shop.phone_number %>
+</p>
+
+<p>
+  <strong>genre：</strong>
+  <%= @shop.genre %>
+</p>
+
+<p>
+  <strong>description：</strong>
+  <%= @shop.description %>
+</p>
+
+<button ><%= link_to "All Shops", shops_path %></button>
+<button><%= link_to "Home", root_path %></button>

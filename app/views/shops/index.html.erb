@@ -1,0 +1,43 @@
+<h1 class="shops-title">All Shops</h1>
+
+<div class="shop-header">
+  <%= link_to "＋ New Shop", new_shop_path, class: "btn btn-primary new-shop-btn" %>
+</div>
+
+<div class="shops-list">
+  <% @shops.each do |shop| %>
+    <div class="shop-card">
+
+  <div class="shop-info">
+    <h2 class="shop-name">
+      <%= link_to shop.name, shop_path(shop) %>
+    </h2>
+
+    <span class="shop-genre">
+      <%= shop.genre %>
+    </span>
+
+    <% if shop.address.present? %>
+      <p class="shop-address">
+        📍 <%= shop.address %>
+      </p>
+    <% end %>
+  </div>
+
+  <div class="shop-actions">
+    <%= link_to "Edit", edit_shop_path(shop), class: "btn btn-outline-primary" %>
+
+    <%= link_to "Delete",
+        shop_path(shop),
+        class: "btn btn-outline-danger",
+        data: {
+          turbo_method: :delete,
+          turbo_confirm: "本当に削除しますか？"
+        } %>
+  </div>
+
+</div>
+
+<% end %>
+
+</div>
