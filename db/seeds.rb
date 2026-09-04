@@ -20,11 +20,25 @@ User.create!(name:  name,
     activated_at: Time.zone.now)
 end
 
+# お店をまとめて生成する
+50.times do |n|
+  name = Faker::Restaurant.name
+  address = Faker::Address.full_address
+  phone_number = Faker::PhoneNumber.phone_number
+  genre = Faker::Restaurant.type
+  description = Faker::Restaurant.description
+  Shop.create!(name: name,
+    address: address,
+    phone_number: phone_number,
+    genre: genre,
+    description: description)
+end
+
 # ユーザーの一部を対象にマイクロポストを生成する
 users = User.order(:created_at).take(6)
-50.times do
+ Shop.all.each do |shop|
   content = Faker::Lorem.sentence(word_count: 5)
-  users.each { |user| user.microposts.create!(content: content) }
+  users.each { |user| user.microposts.create!(content: content, shop_id: shop.id) }
 end
 
 # ユーザーフォローのリレーションシップを作成する

@@ -8,6 +8,7 @@ class Micropost < ApplicationRecord
   has_many :likes, dependent: :destroy
   belongs_to :shop, optional: true
   accepts_nested_attributes_for :shop
+  belongs_to :shop
   has_one_attached :image do |attachable|
     attachable.variant :display, resize_to_limit: [500, 500]
   end
