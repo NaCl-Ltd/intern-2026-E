@@ -6,7 +6,6 @@ class Micropost < ApplicationRecord
            through: :bookmarks,
            source: :user
   has_many :likes, dependent: :destroy
-  belongs_to :shop, optional: true
   accepts_nested_attributes_for :shop
   belongs_to :shop
   has_one_attached :image do |attachable|
