@@ -631,6 +631,16 @@ header.navbar #navbar-menu > li > a:hover {
   color: var(--orange-dark);
 }
 
+.like-button.not-liked {
+  color: white;
+  -webkit-text-stroke: 1px var(--gray-light);
+}
+
+.like-button.not-liked:hover {
+  color: white;
+  -webkit-text-stroke-color: var(--orange);
+}
+
 /* 投稿操作ボタン */
 
 .post-action {
